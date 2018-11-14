@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import x from './assets/cinnamon_sticks.svg';
+import o from './assets/donut.svg';
+
 let gameWon = false;
 
 class App extends Component {
@@ -8,7 +11,7 @@ class App extends Component {
         super(props);
         this.state = {
             board: Array(9).fill(null),
-            player: 'X'
+            player: x
         }
     }
     handleClick(index){
@@ -18,7 +21,7 @@ class App extends Component {
                 newBoard[index] = this.state.player;
                 this.setState({
                     board: newBoard,
-                    player: this.state.player === 'X' ? 'O' : 'X'
+                    player: this.state.player === x ? o : x
                 });
             }
             this.checkWinner();
@@ -46,10 +49,13 @@ class App extends Component {
     }
 
     render() {
-        const Box = this.state.board.map((box,index) => <div className="box" key={index} onClick={() => this.handleClick(index)}>{box}</div>);
+        const Box = this.state.board.map((box,index) =>
+            <div className="box" key={index} onClick={() => this.handleClick(index)}>
+                <img src= {box}/>
+    </div>);
         return (
             <div className="container">
-                <h1>Tic Tac Toe App</h1>
+                <h1>Kevin's "Snack Tac Toe"</h1>
                 <div className="board">
                     {Box}
                 </div>
