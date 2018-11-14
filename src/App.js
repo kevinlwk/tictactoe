@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import x from 'X';
-import o from 'O';
-
 let gameWon = false;
 
 class App extends Component {
@@ -11,7 +8,7 @@ class App extends Component {
         super(props);
         this.state = {
             board: Array(9).fill(null),
-            player: x
+            player: 'X'
         }
     }
     handleClick(index){
@@ -21,7 +18,7 @@ class App extends Component {
                 newBoard[index] = this.state.player;
                 this.setState({
                     board: newBoard,
-                    player: this.state.player === x ? o : x
+                    player: this.state.player === 'X' ? 'O' : 'X'
                 });
             }
             this.checkWinner();
