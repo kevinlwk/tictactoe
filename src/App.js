@@ -15,12 +15,14 @@ class App extends Component {
         }
     }
     handleClick(index){
+        // only play if the game hasn't already been won
         if (!gameWon) {
             let newBoard = this.state.board;
             if (this.state.board[index] === null) {
                 newBoard[index] = this.state.player;
                 this.setState({
                     board: newBoard,
+                    // switch players
                     player: this.state.player === x ? o : x
                 });
             }
@@ -29,6 +31,7 @@ class App extends Component {
     }
 
     checkWinner() {
+        // combinations that allow for a player to win
         let winLines = [
             ["0","1","2"],
             ["3","4","5"],
@@ -41,6 +44,7 @@ class App extends Component {
         ]
         for (let index = 0; index < winLines.length; index++) {
             const [a, b, c] = winLines[index];
+            // checking to see if those elements that appear in those combinations are the same
             if (this.state.board[a] && this.state.board[a] === this.state.board[b] && this.state.board[a] === this.state.board[c]) {
                 gameWon = true;
                 alert("You won!");
